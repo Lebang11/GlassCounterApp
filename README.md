@@ -1,32 +1,32 @@
-# Glass Counting Challenge - Final Submission
+# Glass Counting Challenge - Development & Evaluation
 
-Industrial glass sheet counting using **Hybrid Fourier-CNN** analysis.
+Industrial counting of glass sheet stacks using **Hybrid 1D Fourier-CNN** methods. 
+Our primary objective is to achieve a Mean Absolute Error (MAE) of **< 0.5**.
 
-## 🚀 Execution Info
-1.  Open `Glass_Counting_Pipeline.ipynb`.
-2.  Install dependencies using **Section 0**.
-3.  Execute all cells to generate **`results.csv`**.
+## 🚀 Environment Setup
+Ensure dependencies are installed before running:
+```bash
+pip install opencv-python tensorflow numpy pandas scipy matplotlib tensorflowjs
+```
+*Note: Section 0 of the notebook implements this automatically.*
 
-## 📊 Benchmarking (MAE)
-| Strategy | Best MAE | Status |
+## 📊 Final Leaderboard (Latest Run)
+| Strategy | MAE | Evaluation Status |
 |:---|:---|:---|
-| **Baseline 1D CNN** | 2.6883 | Baseline |
-| **Classical CV** | 23.3700 | Inaccurate |
-| **Hybrid (Initial)** | **2.5891** | **Top Performer** |
-| **Hybrid (Fine-Tuned)** | 2.8516 | Overfitting Observed |
+| **#1 Hybrid Initial (Fourier-CNN)** | **2.8964** | **🏆 Best Overall Strategy** |
+| **#2 Strategy 4 (Synthetic Pre-trained)** | 3.2689 | Robust but requires tuning |
+| **#3 Baseline 1D CNN** | 4.5776 | Initial Prototype |
+| **#4 Hybrid (Fine-Tuned)** | 5.3574 | Overfitted (High Variance) |
+| **#5 Classical CV** | 22.2000 | Baseline (No ML) |
 
-## 🛠️ Tech Stack
-- **TensorFlow** (1D Global Average Pooling CNN)
-- **Fast Fourier Transform** (Global Density Estimation)
-- **OpenCV** (Multi-strip Sobel Averaging)
+## 🛠️ Implementation Highlights
+- **Dilated 1D Convolutions**: Captures periodic sheet features at multiple scales.
+- **Global Average & Max Concatenation**: Extracts global signal density accurately.
+- **Hybrid Domain Analysis**: Merges Frequency Domain (FFT) with Spatial Domain (CNN).
+- **Synthetic Pre-training**: Attempts to bootstrap counting logic for small datasets.
 
-## 📦 External Libraries
-The solution requires the following Python packages:
-- `opencv-python`: Image processing and Sobel filtering.
-- `tensorflow`: Model building and training.
-- `numpy`: Numerical analysis and FFT.
-- `pandas`: Data handling and CSV reporting.
-- `scipy`: Signal processing (peak finding/FFT).
-- `matplotlib`: Visualization.
+## 📦 Result Generation
+Run the final cell in the notebook to generate the competition submission: **`results.csv`**.
 
-*Results based on 20-image validation subset with ±5% manufacturing tolerance.*
+---
+*Optimized for ±5% manufacturing tolerance across 20-35 sheet stacks.*
